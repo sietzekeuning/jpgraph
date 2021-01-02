@@ -344,6 +344,8 @@ class Image
     // Get the specific height for a text string
     public function GetTextHeight($txt = '', $angle = 0)
     {
+        if(empty($txt)) $txt = ' ';
+
         $tmp = preg_split('/\n/', $txt);
         $n   = safe_count($tmp);
         $m   = 0;
@@ -978,8 +980,6 @@ class Image
     {
         $box = $this->GetBBoxTTF($aTxt, $aAngle);
 
-        if(!is_array($box)) return 0;
-
         return abs($box[7] - $box[1]);
     }
 
@@ -987,13 +987,13 @@ class Image
     {
         $box = $this->GetBBoxTTF($aTxt, $aAngle);
 
-        if(!is_array($box)) return 0;
-
         return $box[2] - $box[0] + 1;
     }
 
     public function _StrokeTTF($x, $y, $txt, $dir, $paragraph_align, &$aBoundingBox, $debug = false)
     {
+        if(empty($txt)) $txt = ' ';
+
         // Setup default inter line margin for paragraphs to be
         // 3% of the font height.
         $ConstLineSpacing = 0.03;
@@ -1017,7 +1017,7 @@ class Image
             // basepoint of the tetx. This is the default anchor point for
             // TTF text.
 
-            if ($this->text_valign != 'basepoint' && is_array($bbox)) {
+            if ($this->text_valign != 'basepoint') {
                 // Align x,y ot lower left corner of bbox
 
                 if ($this->text_halign == 'right') {
