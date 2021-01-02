@@ -1017,7 +1017,7 @@ class Image
             // basepoint of the tetx. This is the default anchor point for
             // TTF text.
 
-            if ($this->text_valign != 'basepoint') {
+            if ($this->text_valign != 'basepoint' && is_array($bbox)) {
                 // Align x,y ot lower left corner of bbox
 
                 if ($this->text_halign == 'right') {
