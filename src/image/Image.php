@@ -978,12 +978,16 @@ class Image
     {
         $box = $this->GetBBoxTTF($aTxt, $aAngle);
 
+        if(!is_array($box)) return 0;
+
         return abs($box[7] - $box[1]);
     }
 
     public function GetBBoxWidth($aTxt, $aAngle = 0)
     {
         $box = $this->GetBBoxTTF($aTxt, $aAngle);
+
+        if(!is_array($box)) return 0;
 
         return $box[2] - $box[0] + 1;
     }
